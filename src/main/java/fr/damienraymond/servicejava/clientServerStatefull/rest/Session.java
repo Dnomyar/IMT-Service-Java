@@ -8,5 +8,5 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlJavaTypeAdapter(TraductionSession.class)
 @XmlRootElement(name = "session")
 public interface Session {
-    public int getNumero();
+    int getNumero();
 }

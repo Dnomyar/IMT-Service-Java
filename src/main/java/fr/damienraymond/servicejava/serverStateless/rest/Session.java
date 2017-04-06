@@ -10,11 +10,11 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlRootElement(name = "session")
 public interface Session {
 
-    public static Session fromString(String x) {
+    static Session fromString(String x) {
         return ConversionStringSession.fromString(x);
     }
 
-    public int getNumero();
+    int getNumero();
 
-    public Etat getEtatExecution();
+    Etat getEtatExecution();
 }

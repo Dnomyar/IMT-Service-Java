@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlJavaTypeAdapter(TraductionResultat.class)
 @XmlRootElement(name = "resultat")
 public interface Resultat {
-    public boolean isValide();
+    boolean isValide();
 
-    public Session getId();
+    Session getId();
 }
