@@ -1,39 +1,39 @@
 package fr.damienraymond.servicejava.clientServerStatefull.client;
 
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-
 import fr.damienraymond.servicejava.clientServerStatefull.rest.Automate;
 import fr.damienraymond.servicejava.clientServerStatefull.rest.Resultat;
 import fr.damienraymond.servicejava.clientServerStatefull.rest.Session;
 
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+
 public class AutomateProxy implements Automate {
-	private WebTarget cibleInitier;
-	private WebTarget cibleAccepter;
-	private WebTarget cibleClore;
-	private MediaType typeContenu;
-	
-	public AutomateProxy(String uriBase, MediaType typeContenu){
-		WebTarget cible = AppliCliente.clientJAXRS().target(uriBase);
-		cibleInitier = cible.path("etat/initial");
-		cibleAccepter = cible.path("etat/suivant");
-		cibleClore = cible.path("fin");
-		this.typeContenu = typeContenu;
-	}
-	
-	@Override
-	public Session initier() {
-		return null; // TODO
-	}
+    private WebTarget cibleInitier;
+    private WebTarget cibleAccepter;
+    private WebTarget cibleClore;
+    private MediaType typeContenu;
 
-	@Override
-	public Resultat accepter(char x, Session id) {
-		return null; // TODO
-	}
+    public AutomateProxy(String uriBase, MediaType typeContenu) {
+        WebTarget cible = AppliCliente.clientJAXRS().target(uriBase);
+        cibleInitier = cible.path("etat/initial");
+        cibleAccepter = cible.path("etat/suivant");
+        cibleClore = cible.path("fin");
+        this.typeContenu = typeContenu;
+    }
 
-	@Override
-	public void clore(Session id) {
-		// TODO
-	}
+    @Override
+    public Session initier() {
+        return null; // TODO
+    }
+
+    @Override
+    public Resultat accepter(char x, Session id) {
+        return null; // TODO
+    }
+
+    @Override
+    public void clore(Session id) {
+        // TODO
+    }
 
 }
