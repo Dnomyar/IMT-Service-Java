@@ -9,7 +9,7 @@
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
         <init-param>
             <param-name>javax.ws.rs.Application</param-name>
-            <param-value>fr.damienraymond.servicejava.clientServerStatefull.client.AppliCliente</param-value>
+            <param-value>fr.damienraymond.servicejava.clientServerStatefull.client.AutomateProxy</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
@@ -19,7 +19,7 @@
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
         <init-param>
             <param-name>javax.ws.rs.Application</param-name>
-            <param-value>fr.damienraymond.servicejava.clientServerStateless.client.AppliCliente</param-value>
+            <param-value>fr.damienraymond.servicejava.clientServerStateless.client.AutomateProxy</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
