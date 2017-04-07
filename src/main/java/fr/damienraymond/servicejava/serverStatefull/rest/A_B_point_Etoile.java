@@ -1,8 +1,10 @@
 package fr.damienraymond.servicejava.serverStatefull.rest;
 
+import javax.inject.Singleton;
 import java.util.HashMap;
 import java.util.Map;
 
+@Singleton
 public class A_B_point_Etoile implements Automate {
 
     private int numeroSession;
