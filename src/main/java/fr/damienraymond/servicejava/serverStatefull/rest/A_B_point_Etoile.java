@@ -4,22 +4,24 @@ import javax.inject.Singleton;
 import javax.ws.rs.Path;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 @Path("/")
 @Singleton
 public class A_B_point_Etoile implements Automate {
 
     private int numeroSession;
-    private Map<Session, Etat> executions;
+    private ConcurrentMap<Session, Etat> executions;
 
     public A_B_point_Etoile() {
         System.out.println("Déploiement de " + this.getClass());
         numeroSession = 0;
-        executions = new HashMap<Session, Etat>(25);
+        executions = new ConcurrentHashMap<>(25);
     }
 
     @Override
-    public Session initier() {
+    public synchronized Session initier() {
         ImplemSession s = new ImplemSession();
         s.setNumero(numeroSession);
         numeroSession++;
