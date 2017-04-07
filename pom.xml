@@ -11,6 +11,7 @@
     <packaging>war</packaging>
 
     <build>
+        <finalName>servicejava</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
