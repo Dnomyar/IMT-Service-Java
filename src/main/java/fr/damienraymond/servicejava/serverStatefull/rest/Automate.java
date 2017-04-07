@@ -1,6 +1,7 @@
 package fr.damienraymond.servicejava.serverStatefull.rest;
 
 
+import javax.inject.Singleton;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
@@ -26,12 +27,12 @@ PUT  : not pure & idempotent
 
 
  */
+
 public interface Automate {
 
 
     @Path("state/init")
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
     Session initier();
 
     @Path("state/accept/{state}")

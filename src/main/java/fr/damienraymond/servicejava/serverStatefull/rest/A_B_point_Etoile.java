@@ -1,9 +1,11 @@
 package fr.damienraymond.servicejava.serverStatefull.rest;
 
 import javax.inject.Singleton;
+import javax.ws.rs.Path;
 import java.util.HashMap;
 import java.util.Map;
 
+@Path("/")
 @Singleton
 public class A_B_point_Etoile implements Automate {
 
