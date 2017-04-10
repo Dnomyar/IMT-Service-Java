@@ -27,7 +27,7 @@ public class AppliCliente {
 
     public static void main(String[] args) {
 
-        String adresse = "http://localhost:8080/servicejava/clientServerStatefull";
+        String adresse = "http://localhost:8080/servicejava/serverStatefull";
 
         System.out.println("*************");
 
