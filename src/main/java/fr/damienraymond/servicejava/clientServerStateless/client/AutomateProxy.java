@@ -4,9 +4,13 @@ import fr.damienraymond.servicejava.clientServerStateless.rest.Automate;
 import fr.damienraymond.servicejava.clientServerStateless.rest.Resultat;
 import fr.damienraymond.servicejava.clientServerStateless.rest.Session;
 
+import javax.inject.Singleton;
+import javax.ws.rs.Path;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
+@Path("/")
+@Singleton
 public class AutomateProxy implements Automate {
     private WebTarget cibleInitier;
     private WebTarget cibleAccepter;

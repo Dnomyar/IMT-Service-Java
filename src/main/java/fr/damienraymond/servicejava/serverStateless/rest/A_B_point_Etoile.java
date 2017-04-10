@@ -3,7 +3,7 @@ package fr.damienraymond.servicejava.serverStateless.rest;
 import javax.inject.Singleton;
 import javax.ws.rs.Path;
 
-@Path("automate")
+@Path("/")
 @Singleton
 public class A_B_point_Etoile implements Automate {
 

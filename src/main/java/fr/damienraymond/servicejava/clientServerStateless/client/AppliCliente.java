@@ -1,13 +1,18 @@
 package fr.damienraymond.servicejava.clientServerStateless.client;
 
-import fr.damienraymond.servicejava.clientServerStateless.rest.Automate;
-import fr.damienraymond.servicejava.clientServerStateless.rest.jaxb.FournisseurTraduction;
+import fr.damienraymond.servicejava.clientServerStatefull.rest.jaxb.FournisseurTraduction;
+import fr.damienraymond.servicejava.clientServerStatefull.rest.Resultat;
+import fr.damienraymond.servicejava.clientServerStatefull.rest.Session;
+import fr.damienraymond.servicejava.clientServerStatefull.rest.Automate;
 import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.client.proxy.WebResourceFactory;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.logging.LoggingFeature;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import java.util.Arrays;
 
 public class AppliCliente {
 
@@ -22,20 +27,37 @@ public class AppliCliente {
 
     public static void main(String[] args) {
 
-        String adresse = "http://localhost:8080/AutomateSansEtatSession/automate";
+        String adresse = "http://localhost:8080/servicejava/serverStateless";
 
         System.out.println("*************");
 
-        // TODO
+        final WebTarget target = clientJAXRS().target(adresse);
+
+        final Automate automate = WebResourceFactory.newResource(Automate.class, target);
+
+        test(automate);
 
         System.out.println("*************");
 
     }
 
     private static void test(Automate automate) {
-        char[] mot = {'a', 'b', 'a', 'a', 'a', 'b'};
-        // TODO
-        return;
+        Character[] mot = {'a', 'b', 'a', 'a', 'a', 'b'};
+
+        Session session = automate.initier();
+
+        final boolean isValid =
+                Arrays.stream(mot)
+                        .allMatch(e -> {
+                            final Resultat accepter = automate.accepter(e, session);
+                            return accepter.isValide();
+                        });
+
+        if(isValid){
+            System.out.println("Automate is correct");
+        }else{
+            System.out.println("Automate is not correct");
+        }
     }
 
 }
