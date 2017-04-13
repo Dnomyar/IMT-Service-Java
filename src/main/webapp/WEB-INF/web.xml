@@ -45,6 +45,11 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
+    <servlet>
+        <servlet-name>serverRegister</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>clientServerStatefull</servlet-name>
         <url-pattern>/clientServerStatefull/*</url-pattern>
@@ -63,6 +68,13 @@
     <servlet-mapping>
         <servlet-name>serverStateless</servlet-name>
         <url-pattern>/serverStateless/*</url-pattern>
+    </servlet-mapping>
+
+
+
+    <servlet-mapping>
+        <servlet-name>serverRegister</servlet-name>
+        <url-pattern>/serverRegister/*</url-pattern>
     </servlet-mapping>
 
 
