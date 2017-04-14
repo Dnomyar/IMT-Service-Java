@@ -129,3 +129,19 @@ Then there is 3 cases :
 - otherwise return
     - code 412 (Precondition Failed) with
     - header `ETag=[currentVersion]`
+
+
+
+### Server filters
+
+```
+Priority : 1 ----------------------------------------------------------------------> 5
+
+|--> CompterRequetes --> InteragirAtomiquement --> Cacher --> RealiserEcritureOptimiste  -->|
+|                                                                                           | Business
+|                                                                                           | code
+|<-- CompterReponse  <-- InteragirAtomiquement <-- AjouterVersionAuxReponses             <--|
+
+Priority : 1 <---------------------------------------------------------------------- 5
+
+```
