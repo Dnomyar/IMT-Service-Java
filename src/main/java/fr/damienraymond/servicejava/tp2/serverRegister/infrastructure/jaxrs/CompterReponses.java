@@ -33,9 +33,14 @@ public class CompterReponses implements ContainerResponseFilter {
     @Override
     public void filter(ContainerRequestContext requete,
                        ContainerResponseContext reponse) throws IOException {
+        final int OK_200 = Response.Status.OK.getStatusCode();
+        final int NOT_MODIFIED_304 = Response.Status.NOT_MODIFIED.getStatusCode();
+        final int PRECONDITION_FAILED_412 = Response.Status.PRECONDITION_FAILED.getStatusCode();
+        final int PRECONDITION_REQUIRED_428 = StatutRFC6585.PRECONDITION_REQUIRED.getCodeStatut();
+
         out.incrementAndGet();
         int statut = reponse.getStatus();
-        if (statut == Response.Status.OK.getStatusCode()) {
+        if (statut == OK_200) {
             if (requete.getMethod().equalsIgnoreCase("GET")) {
                 repOK200GET.incrementAndGet();
             }
@@ -43,14 +48,14 @@ public class CompterReponses implements ContainerResponseFilter {
                 rep0K200PUT.incrementAndGet();
             }
         }
-        if (statut == Response.Status.NOT_MODIFIED.getStatusCode()) {
+        if (statut == NOT_MODIFIED_304) {
             repNotModified304.incrementAndGet();
         }
-        if (statut == Response.Status.PRECONDITION_FAILED.getStatusCode()) {
+        if (statut == PRECONDITION_FAILED_412) {
             repPreconditionFailed412.incrementAndGet();
         }
 
-        if (statut == StatutRFC6585.PRECONDITION_REQUIRED.getCodeStatut()) {
+        if (statut == PRECONDITION_REQUIRED_428) {
             if (requete.getMethod().equalsIgnoreCase("GET")) {
                 repPreconditionRequired428GET.incrementAndGet();
             }

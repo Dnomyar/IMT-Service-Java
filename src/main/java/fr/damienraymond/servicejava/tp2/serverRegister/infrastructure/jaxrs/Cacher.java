@@ -36,20 +36,7 @@ public class Cacher implements ContainerRequestFilter {
     public void filter(ContainerRequestContext requete) throws IOException {
         if (requete.getMethod().equalsIgnoreCase("GET")) {
 
-            MultivaluedMap<String, String> enTetes = requete.getHeaders();
-            String versionClient = enTetes.getFirst(HttpHeaders.IF_MATCH);
-            if (versionClient != null) {
-                // Précondition if-match présente au lieu de if-none-match
-                String recom = "NE DOIT PAS contenir l'en-tête if-match, DEVRAIT contenir l'en-tête if-none-match.";
-                String msgErreur =
-                        "Requête incorrecte - erreur 428 : pré-condition requise - " + recom;
-                Response rep = Response
-                        .status(StatutRFC6585.PRECONDITION_REQUIRED.getCodeStatut())
-                        .header(HttpHeaders.ETAG, OutilsHttp.etag(ressourceVersionnee.getVersion()))
-                        .entity("erreur 428 - " + recom).build();
-                //.entity(ressourceVersionnee.getRessourceMutable()).build(); // Une alternative
-                requete.abortWith(rep);
-                System.out.println("*** " + msgErreur + " ***");
+            if (checkIfRequestDoesNotContainsHeaderIfMatch(requete)) {
                 return;
             }
 
@@ -72,6 +59,26 @@ public class Cacher implements ContainerRequestFilter {
             // précondition vérifiée
             return;
         }
+    }
+
+    private boolean checkIfRequestDoesNotContainsHeaderIfMatch(ContainerRequestContext requete) {
+        MultivaluedMap<String, String> enTetes = requete.getHeaders();
+        String versionClient = enTetes.getFirst(HttpHeaders.IF_MATCH);
+        if (versionClient != null) {
+            // Précondition if-match présente au lieu de if-none-match
+            String recom = "NE DOIT PAS contenir l'en-tête if-match, DEVRAIT contenir l'en-tête if-none-match.";
+            String msgErreur =
+                    "Requête incorrecte - erreur 428 : pré-condition requise - " + recom;
+            Response rep = Response
+                    .status(StatutRFC6585.PRECONDITION_REQUIRED.getCodeStatut())
+                    .header(HttpHeaders.ETAG, OutilsHttp.etag(ressourceVersionnee.getVersion()))
+                    .entity("erreur 428 - " + recom).build();
+            //.entity(ressourceVersionnee.getRessourceMutable()).build(); // Une alternative
+            requete.abortWith(rep);
+            System.out.println("*** " + msgErreur + " ***");
+            return true;
+        }
+        return false;
     }
 
 }
