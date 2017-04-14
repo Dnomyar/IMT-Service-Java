@@ -19,6 +19,8 @@ import javax.ws.rs.client.WebTarget;
 import java.util.LinkedList;
 import java.util.List;
 
+import static fr.damienraymond.servicejava.tp2.Config.BASE_URL;
+
 
 public class TestRegistre2 {
 
@@ -36,6 +38,7 @@ public class TestRegistre2 {
         config.register(JacksonFeature.class);
 
         Cache cache = new Cache();
+
         config.register(new AbstractBinder() {
             @Override
             protected void configure() {
@@ -51,27 +54,33 @@ public class TestRegistre2 {
 
     public static void main(String[] args) {
 
-        final String adresse = "http://localhost:8080/Registre";
+        final String adresse = String.format(BASE_URL, 8080);
 
         ErreurPrecondition412 gestionnaire = new ErreurPrecondition412();
         WebTarget cible = clientJAXRS(gestionnaire).target(adresse);
 
         final ServiceRegistre proxyRegistre = WebResourceFactory.newResource(ServiceRegistre.class, cible);
 
+        final StringBuilder stringBuilder = new StringBuilder();
+
         for (int i = 0; i < 100; i++) {
-            System.out.println("*** 1. Get ***");
+            stringBuilder.append("*** 1. Get ***").append('\n');
 
             Ressource s = proxyRegistre.get();
-            System.out.println("*** Résultat 1 : " + s.getI());
+            stringBuilder.append("*** Résultat 1 : ").append(s.getI()).append('\n');
 
-            System.out.println("*** 2. Set ***");
+            stringBuilder.append("*** 2. Set ***");
 
-            s.setI(s.getI() + 1);
-            s = proxyRegistre.set(s);
+            do {
+                s.setI(s.getI() + 1);
+                s = proxyRegistre.set(s);
+            } while (gestionnaire.erreur412());
 
-            System.out.println("*** Résultat 2 : " + s.getI());
+            stringBuilder.append("*** Résultat 2 : ").append(s.getI()).append('\n');
         }
 
+        System.out.println(stringBuilder);
+        System.out.println("Reprises de transaction : " + gestionnaire.getReprises());
         System.exit(0);
     }
 
