@@ -53,20 +53,20 @@ public class TestRegistre {
 
 
     private static Integer step(ServiceRegistre proxyRegistre){
-        final StringBuilder stringBuffer = new StringBuilder();
-        stringBuffer.append("*** 1. Get ***").append('\n');
+        final StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("*** 1. Get ***").append('\n');
 
         Ressource s = proxyRegistre.get();
-        stringBuffer.append("*** Résultat 1 : ").append(s.getI()).append('\n');
+        stringBuilder.append("*** Résultat 1 : ").append(s.getI()).append('\n');
 
-        stringBuffer.append("*** 2. Set ***").append('\n');
+        stringBuilder.append("*** 2. Set ***").append('\n');
 
         s.setI(s.getI() + 1);
         s = proxyRegistre.set(s);
 
-        stringBuffer.append("*** Résultat 2 : ").append(s.getI()).append('\n');
+        stringBuilder.append("*** Résultat 2 : ").append(s.getI()).append('\n');
 
-        System.out.println(stringBuffer.toString());
+        System.out.println(stringBuilder.toString());
 
         return s.getI();
     }
