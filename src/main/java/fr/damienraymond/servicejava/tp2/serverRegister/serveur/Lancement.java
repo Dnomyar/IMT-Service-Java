@@ -8,10 +8,12 @@ import org.glassfish.jersey.server.ResourceConfig;
 import javax.ws.rs.core.UriBuilder;
 import java.net.URI;
 
+import static fr.damienraymond.servicejava.tp2.Config.BASE_URL;
+
 public class Lancement {
 
     public static void main(String[] args) {
-        final String adresse = "http://localhost:8087/servicejava/serverRegister";
+        final String adresse = String.format(BASE_URL, 8087);
 
         URI baseUri = UriBuilder.fromUri(adresse).build();
         ResourceConfig config = new Service();

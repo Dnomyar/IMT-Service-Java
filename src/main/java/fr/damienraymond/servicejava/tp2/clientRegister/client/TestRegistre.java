@@ -11,6 +11,8 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
+import static fr.damienraymond.servicejava.tp2.Config.BASE_URL;
+
 public class TestRegistre {
 
     public static Client clientJAXRS() {
@@ -24,7 +26,7 @@ public class TestRegistre {
 
     public static void main(String[] args) {
 
-        final String adresse = "http://localhost:8080/Registre";
+        final String adresse = String.format(BASE_URL, 8080);
 
         WebTarget cible = clientJAXRS().target(adresse);
 
