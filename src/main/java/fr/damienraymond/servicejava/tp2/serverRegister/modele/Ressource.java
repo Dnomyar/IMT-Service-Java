@@ -1,5 +1,9 @@
 package fr.damienraymond.servicejava.tp2.serverRegister.modele;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Ressource {
     public final static Ressource SINGLETON;
 
@@ -9,6 +13,7 @@ public class Ressource {
         System.out.println("- Valeur initiale : 0");
 
     }
+
 
     private int i;
 
@@ -20,6 +25,7 @@ public class Ressource {
         this.i = j;
     }
 
+    @XmlElement(name = "x")
     public int getI() {
         return i;
     }
