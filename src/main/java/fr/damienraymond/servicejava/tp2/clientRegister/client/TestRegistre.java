@@ -11,6 +11,8 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
+import java.util.stream.Stream;
+
 import static fr.damienraymond.servicejava.tp2.Config.BASE_URL;
 
 public class TestRegistre {
@@ -32,21 +34,41 @@ public class TestRegistre {
 
         final ServiceRegistre proxyRegistre = WebResourceFactory.newResource(ServiceRegistre.class, cible);
 
-        for (int i = 0; i < 100; i++) {
-            System.out.println("*** 1. Get ***");
 
-            Ressource s = proxyRegistre.get();
-            System.out.println("*** Résultat 1 : " + s.getI());
+        int NB_REQUEST = 1000;
 
-            System.out.println("*** 2. Set ***");
 
-            s.setI(s.getI() + 1);
-            s = proxyRegistre.set(s);
+        final long count = Stream.iterate(0, i -> i + 1)
+                .limit(NB_REQUEST)
+                .unordered()
+                .parallel()
+                .map(i -> step(proxyRegistre))
+                .distinct()
+                .count();
 
-            System.out.println("*** Résultat 2 : " + s.getI());
-        }
+        System.out.println(count + "/" + NB_REQUEST);
 
         System.exit(0);
+    }
+
+
+    private static Integer step(ServiceRegistre proxyRegistre){
+        final StringBuilder stringBuffer = new StringBuilder();
+        stringBuffer.append("*** 1. Get ***").append('\n');
+
+        Ressource s = proxyRegistre.get();
+        stringBuffer.append("*** Résultat 1 : ").append(s.getI()).append('\n');
+
+        stringBuffer.append("*** 2. Set ***").append('\n');
+
+        s.setI(s.getI() + 1);
+        s = proxyRegistre.set(s);
+
+        stringBuffer.append("*** Résultat 2 : ").append(s.getI()).append('\n');
+
+        System.out.println(stringBuffer.toString());
+
+        return s.getI();
     }
 
 }
