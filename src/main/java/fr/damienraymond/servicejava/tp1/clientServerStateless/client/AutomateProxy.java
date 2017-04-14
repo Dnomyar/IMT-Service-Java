@@ -9,8 +9,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
-@Path("/")
-@Singleton
 public class AutomateProxy implements Automate {
     private WebTarget cibleInitier;
     private WebTarget cibleAccepter;
@@ -18,19 +16,22 @@ public class AutomateProxy implements Automate {
 
     public AutomateProxy(String uriBase, MediaType typeContenu) {
         WebTarget cible = AppliCliente.clientJAXRS().target(uriBase);
-        cibleInitier = cible.path("etat/initial");
-        cibleAccepter = cible.path("etat/suivant");
+        cibleInitier = cible.path("state/init");
+        cibleAccepter = cible.path("state/accept");
         this.typeContenu = typeContenu;
     }
 
     @Override
     public Session initier() {
-        return null; // TODO
+        return cibleInitier.request(typeContenu).post(null).readEntity(Session.class);
     }
 
     @Override
     public Resultat accepter(char x, Session id) {
-        return null; // TODO
+        return cibleAccepter
+                .path(Character.toString(x))
+                .queryParam("id", id)
+                .request(typeContenu).get().readEntity(Resultat.class);
     }
 
 }
