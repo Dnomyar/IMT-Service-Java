@@ -18,6 +18,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static fr.damienraymond.servicejava.tp2.Config.BASE_URL;
 
@@ -61,27 +62,42 @@ public class TestRegistre2 {
 
         final ServiceRegistre proxyRegistre = WebResourceFactory.newResource(ServiceRegistre.class, cible);
 
-        final StringBuilder stringBuilder = new StringBuilder();
+        int NB_REQUEST = 1000;
 
-        for (int i = 0; i < 100; i++) {
-            stringBuilder.append("*** 1. Get ***").append('\n');
+        final long count = Stream.iterate(0, i -> i + 1)
+                .limit(NB_REQUEST)
+                .unordered()
+                .parallel()
+                .map(i -> step(proxyRegistre, gestionnaire))
+                .distinct()
+                .count();
 
-            Ressource s = proxyRegistre.get();
-            stringBuilder.append("*** Résultat 1 : ").append(s.getI()).append('\n');
-
-            stringBuilder.append("*** 2. Set ***");
-
-            do {
-                s.setI(s.getI() + 1);
-                s = proxyRegistre.set(s);
-            } while (gestionnaire.erreur412());
-
-            stringBuilder.append("*** Résultat 2 : ").append(s.getI()).append('\n');
-        }
-
-        System.out.println(stringBuilder);
+        System.out.println(count + "/" + NB_REQUEST);
         System.out.println("Reprises de transaction : " + gestionnaire.getReprises());
         System.exit(0);
+    }
+
+
+
+    private synchronized static Integer step(ServiceRegistre proxyRegistre, ErreurPrecondition412 gestionnaire){
+        final StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("*** 1. Get ***").append('\n');
+
+        Ressource s = proxyRegistre.get();
+        stringBuilder.append("*** Résultat 1 : ").append(s.getI()).append('\n');
+
+        stringBuilder.append("*** 2. Set ***");
+
+        do {
+            s.setI(s.getI() + 1);
+            s = proxyRegistre.set(s);
+        } while (gestionnaire.erreur412());
+
+        stringBuilder.append("*** Résultat 2 : ").append(s.getI()).append('\n');
+
+        System.out.println(stringBuilder.toString());
+
+        return s.getI();
     }
 
 }
