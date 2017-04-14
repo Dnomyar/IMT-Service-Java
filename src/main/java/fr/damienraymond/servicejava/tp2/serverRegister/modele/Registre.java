@@ -1,5 +1,11 @@
 package fr.damienraymond.servicejava.tp2.serverRegister.modele;
 
+
+import javax.inject.Singleton;
+import javax.ws.rs.Path;
+
+@Path("optimist")
+@Singleton
 public class Registre implements ServiceRegistre {
 
     private Ressource n;
