@@ -4,6 +4,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+
+    <!--
+    =====================================================
+        TP1
+    =====================================================
+    -->
+
     <servlet>
         <servlet-name>clientServerStatefull</servlet-name>
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
@@ -45,10 +52,6 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
-    <servlet>
-        <servlet-name>serverRegister</servlet-name>
-        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
-    </servlet>
 
     <servlet-mapping>
         <servlet-name>clientServerStatefull</servlet-name>
@@ -69,6 +72,23 @@
         <servlet-name>serverStateless</servlet-name>
         <url-pattern>/serverStateless/*</url-pattern>
     </servlet-mapping>
+
+
+    <!--
+    =====================================================
+        TP2
+    =====================================================
+    -->
+
+    <servlet>
+        <servlet-name>serverRegister</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>fr.damienraymond.servicejava.tp2.serverRegister.infrastructure.Service</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
 
 
 
