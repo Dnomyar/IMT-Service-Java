@@ -1,9 +1,9 @@
 package fr.damienraymond.servicejava.tp1.clientServerStateless.client;
 
-import fr.damienraymond.servicejava.tp1.clientServerStatefull.rest.jaxb.FournisseurTraduction;
-import fr.damienraymond.servicejava.tp1.clientServerStatefull.rest.Resultat;
-import fr.damienraymond.servicejava.tp1.clientServerStatefull.rest.Session;
-import fr.damienraymond.servicejava.tp1.clientServerStatefull.rest.Automate;
+import fr.damienraymond.servicejava.tp1.clientServerStateless.rest.jaxb.FournisseurTraduction;
+import fr.damienraymond.servicejava.tp1.clientServerStateless.rest.Resultat;
+import fr.damienraymond.servicejava.tp1.clientServerStateless.rest.Session;
+import fr.damienraymond.servicejava.tp1.clientServerStateless.rest.Automate;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.proxy.WebResourceFactory;
 import org.glassfish.jersey.jackson.JacksonFeature;
