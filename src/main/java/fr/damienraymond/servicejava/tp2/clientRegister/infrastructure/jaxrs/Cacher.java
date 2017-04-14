@@ -94,7 +94,7 @@ public class Cacher implements ClientResponseFilter {
             reponse.setStatusInfo(Response.Status.ACCEPTED);
             final MultivaluedMap<String, String> headers = reponse.getHeaders();
             headers.putSingle(HttpHeaders.CONTENT_LENGTH, String.valueOf(cache.contenu.length));
-            headers.putSingle(HttpHeaders.CONTENT_TYPE, cache.typeContenu.getType());
+            headers.putSingle(HttpHeaders.CONTENT_TYPE, cache.typeContenu.toString());
 
             return true;
         }
