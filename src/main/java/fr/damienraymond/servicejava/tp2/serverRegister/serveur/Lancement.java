@@ -11,7 +11,7 @@ import java.net.URI;
 public class Lancement {
 
     public static void main(String[] args) {
-        final String adresse = "http://localhost:8087/Registre";
+        final String adresse = "http://localhost:8087/servicejava/serverRegister";
 
         URI baseUri = UriBuilder.fromUri(adresse).build();
         ResourceConfig config = new Service();
