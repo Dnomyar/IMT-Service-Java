@@ -2,6 +2,7 @@ package fr.damienraymond.servicejava.tp1.serverStateless.rest;
 
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 
 /*
 
@@ -21,12 +22,14 @@ PUT  : not pure & idempotent
  */
 public interface Automate {
 
+
     @Path("state/init")
-    @GET // pure & idempotent
+    @POST // not pure & not idempotent
     Session initier();
 
     @Path("state/accept/{lettre}")
     @GET // pure & idempotent
+    @Produces(MediaType.APPLICATION_JSON)
     Resultat accepter(@PathParam("lettre") char x, @QueryParam("id") Session id);
 
 }
