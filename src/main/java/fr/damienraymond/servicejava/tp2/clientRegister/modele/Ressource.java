@@ -1,5 +1,9 @@
 package fr.damienraymond.servicejava.tp2.clientRegister.modele;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Ressource {
     private int i;
 
@@ -11,6 +15,7 @@ public class Ressource {
         this.i = j;
     }
 
+    @XmlElement(name = "x")
     public int getI() {
         return i;
     }
