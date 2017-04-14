@@ -97,3 +97,35 @@ The case study of this TP is to optimist concurrency control through the example
 // Ecriture annulée avec mise à jour du cache
 - ecritureI(KO, y, m) & Cache(x, n) -> k(KO, y) & Cache(y, m)
 ```
+
+
+### Client version management
+#### Client GET request
+The request needs contain the header `if-none-match=[clientVersion]`.
+
+Then there is 2 cases :
+
+- either the client and the server **version** are the **same**, then return
+    - code 200 with
+    - header `ETag=[currentVersion]`
+- either version are **different**, then return
+    - code 304 (Not-Modified) with
+    - header `ETag=[clientVersion]` and
+    - header `Content-Length=[0]`
+
+
+#### Client SET request
+
+The request needs contain the header `if-match=[clientVersion]`.
+
+Then there is 3 cases :
+
+- either request header `if-match` is missing, then return
+    - code 428 (Precondition Required) with
+    - header `ETag=[clientVersion]`
+- either the client and the server **version** are the **same**, then return
+    - code 200 with
+    - header `ETag=[newVersion]`
+- otherwise return
+    - code 412 (Precondition Failed) with
+    - header `ETag=[currentVersion]`
