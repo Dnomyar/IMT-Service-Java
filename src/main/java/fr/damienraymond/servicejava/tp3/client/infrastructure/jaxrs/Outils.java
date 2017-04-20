@@ -1,22 +1,21 @@
-package infrastructure.jaxrs;
+package fr.damienraymond.servicejava.tp3.client.infrastructure.jaxrs;
 
-import infrastructure.entreesSorties.Flots;
-
-import java.io.InputStream;
+import fr.damienraymond.servicejava.tp3.client.infrastructure.entreesSorties.Flots;
 
 import javax.ws.rs.core.Response;
+import java.io.InputStream;
 
 public class Outils {
-	/*
-	 * A utiliser avec des réponses correspondant à des erreurs.
-	 */
-	public static String messageErreur(Response rep){
-		String msg = rep.getStatus() + " : ";
-		Object contenu = rep.getEntity();
-		if (contenu instanceof InputStream) {
-			msg = msg + new String(
-					Flots.convertirFlotEnOctets((InputStream) contenu));
-		}
-		return msg;
-	}
+    /*
+     * A utiliser avec des réponses correspondant à des erreurs.
+     */
+    public static String messageErreur(Response rep) {
+        String msg = rep.getStatus() + " : ";
+        Object contenu = rep.getEntity();
+        if (contenu instanceof InputStream) {
+            msg = msg + new String(
+                    Flots.convertirFlotEnOctets((InputStream) contenu));
+        }
+        return msg;
+    }
 }

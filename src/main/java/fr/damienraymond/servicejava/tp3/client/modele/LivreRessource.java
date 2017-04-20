@@ -1,18 +1,17 @@
-package modele;
+package fr.damienraymond.servicejava.tp3.client.modele;
 
 
+import fr.damienraymond.servicejava.tp3.client.configuration.JAXRS;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
-import configuration.JAXRS;
-
 public interface LivreRessource extends Livre {
-	@GET 
-	@Path(JAXRS.SOUSCHEMIN_REPLIVRE)
-	@Produces(JAXRS.TYPE_MEDIA)
-	Livre getRepresentation();
+    @GET
+    @Path(JAXRS.SOUSCHEMIN_REPLIVRE)
+    @Produces(JAXRS.TYPE_MEDIA)
+    Livre getRepresentation();
 
 
 }

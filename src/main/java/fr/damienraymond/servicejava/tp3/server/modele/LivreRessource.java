@@ -1,9 +1,9 @@
-package modele;
+package fr.damienraymond.servicejava.tp3.server.modele;
+
+import fr.damienraymond.servicejava.tp3.server.configuration.JAXRS;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
-
-import configuration.JAXRS;
 
 /*
  * Une ressource Livre "est" un livre et "a" un livre.
@@ -13,10 +13,10 @@ import configuration.JAXRS;
  */
 public interface LivreRessource extends Livre {
 
-	@GET 
-	@Produces(JAXRS.TYPE_MEDIA)
-	Livre getRepresentation();
+    @GET
+    @Produces(JAXRS.TYPE_MEDIA)
+    Livre getRepresentation();
 
-	// Possibles autres méthodes liées au livre et à la bibliothèque : cote, etc.
+    // Possibles autres méthodes liées au livre et à la bibliothèque : cote, etc.
 
 }

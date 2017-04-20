@@ -1,9 +1,6 @@
-package modele;
-
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+package fr.damienraymond.servicejava.tp3.client.modele;
 
 public interface Archive {
-	public LivreRessource sousRessource(IdentifiantLivre id) ; // Une sous-ressource ne peut-être une cible de requête.
-		
+    LivreRessource sousRessource(IdentifiantLivre id); // Une sous-ressource ne peut-être une cible de requête.
+
 }

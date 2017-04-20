@@ -1,14 +1,15 @@
-package modele;
+package fr.damienraymond.servicejava.tp3.server.modele;
+
+import fr.damienraymond.servicejava.tp3.server.configuration.JAXRS;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.xml.bind.annotation.XmlRootElement;
-import configuration.JAXRS;
 
 
-@XmlRootElement(name="livre")
+@XmlRootElement(name = "livre")
 public interface Livre {
-	@GET
-	@Path(JAXRS.SOUSCHEMIN_TITRE)
-	String getTitre();
+    @GET
+    @Path(JAXRS.SOUSCHEMIN_TITRE)
+    String getTitre();
 }
