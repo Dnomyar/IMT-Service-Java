@@ -1,5 +1,6 @@
 package fr.damienraymond.servicejava.tp3.client.client;
 
+import fr.damienraymond.servicejava.tp3.client.configuration.JAXRS;
 import fr.damienraymond.servicejava.tp3.client.infrastructure.jaxrs.AdapterReponsesCreatedPOST;
 import fr.damienraymond.servicejava.tp3.client.infrastructure.jaxrs.ClientRessource;
 import fr.damienraymond.servicejava.tp3.client.infrastructure.jaxrs.HyperLien;
@@ -19,9 +20,11 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import java.lang.reflect.Proxy;
 
+import static fr.damienraymond.servicejava.tp3.configuration.Config.BASE_URL;
+
 public class AppliCliente {
 
-    private static final String ADRESSE = "http://localhost:8080/Bibliotheque/bibliotheque"; // TODO
+    private static final String ADRESSE = BASE_URL + "/" + JAXRS.CHEMIN_BIBLIO; // TODO
 
     public static Client clientJAXRS() {
         ClientConfig config = new ClientConfig();
