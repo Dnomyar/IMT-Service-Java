@@ -9,7 +9,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "livre")
 public interface Livre {
+
     @GET
     @Path(JAXRS.SOUSCHEMIN_TITRE)
     String getTitre();
+
+
+    static Livre fromString(String str){
+        return new ImplemLivre(str);
+    }
+
 }
