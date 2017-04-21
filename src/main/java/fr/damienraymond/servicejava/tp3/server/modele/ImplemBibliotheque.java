@@ -3,6 +3,8 @@ package fr.damienraymond.servicejava.tp3.server.modele;
 import fr.damienraymond.servicejava.tp3.server.infrastructure.jaxrs.HyperLien;
 import fr.damienraymond.servicejava.tp3.server.infrastructure.jaxrs.HyperLiens;
 
+import javax.inject.Singleton;
+import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.util.LinkedList;
@@ -11,6 +13,9 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+
+@Path("library")
+@Singleton
 public class ImplemBibliotheque implements BibliothequeArchive {
 
     private ConcurrentMap<IdentifiantLivre, Livre> catalogue;
