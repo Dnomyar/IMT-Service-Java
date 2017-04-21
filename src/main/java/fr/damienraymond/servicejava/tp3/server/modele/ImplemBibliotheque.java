@@ -1,5 +1,6 @@
 package fr.damienraymond.servicejava.tp3.server.modele;
 
+import fr.damienraymond.servicejava.tp3.server.configuration.JAXRS;
 import fr.damienraymond.servicejava.tp3.server.infrastructure.jaxrs.HyperLien;
 import fr.damienraymond.servicejava.tp3.server.infrastructure.jaxrs.HyperLiens;
 
@@ -14,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 
-@Path("library")
+@Path(JAXRS.CHEMIN_BIBLIO)
 @Singleton
 public class ImplemBibliotheque implements BibliothequeArchive {
 
