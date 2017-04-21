@@ -100,6 +100,31 @@
 
     <!--
     =====================================================
+        TP3
+    =====================================================
+    -->
+
+    <servlet>
+        <servlet-name>tp3</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>fr.damienraymond.servicejava.tp3.server.infrastructure.Service</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+
+
+    <servlet-mapping>
+        <servlet-name>tp3</servlet-name>
+        <url-pattern>/tp3/*</url-pattern>
+    </servlet-mapping>
+
+
+
+    <!--
+    =====================================================
         TP4
     =====================================================
     -->
