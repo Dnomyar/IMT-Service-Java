@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 
 @Path(JAXRS.CHEMIN_BIBLIO)
@@ -21,17 +23,21 @@ public class ImplemBibliotheque implements BibliothequeArchive {
 
     private ConcurrentMap<IdentifiantLivre, Livre> catalogue;
     private int compteur; // dernier identifiant utilisé (-1 : non utilisé)
+    private Lock lock;
 
     public ImplemBibliotheque() {
         System.out.println("Déploiement de " + this + " : " + this.getClass());
         catalogue = new ConcurrentHashMap<IdentifiantLivre, Livre>();
         compteur = -1;
+        lock = new ReentrantLock();
     }
 
     @Override
     public HyperLien<LivreRessource> ajouter(Livre l) {
         IdentifiantLivre id = null;
+        lock.lock();
         compteur++;
+        lock.unlock();
         id = new ImplemIdentifiantLivre(Integer.toString(compteur));
         catalogue.put(id, l);
         final URI adresse = URI.create("bibliotheque/" + id.getId());
