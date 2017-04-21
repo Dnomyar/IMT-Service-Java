@@ -24,7 +24,7 @@ import static fr.damienraymond.servicejava.tp3.configuration.Config.BASE_URL;
 
 public class AppliCliente {
 
-    private static final String ADRESSE = BASE_URL + "/" + JAXRS.CHEMIN_BIBLIO; // TODO
+    private static final String ADRESSE = BASE_URL + "/" + JAXRS.CHEMIN_BIBLIO;
 
     public static Client clientJAXRS() {
         ClientConfig config = new ClientConfig();
