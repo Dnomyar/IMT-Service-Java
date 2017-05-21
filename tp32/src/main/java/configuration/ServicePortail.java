@@ -1,5 +1,6 @@
 package configuration;
 
+import modele.ImplemPortail;
 import modele.Portail;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.logging.LoggingFeature;
@@ -21,7 +22,7 @@ public class ServicePortail extends ResourceConfig {
 		
 
 		// Ressource : un portail
-		this.register(Portail.class);
+		this.register(ImplemPortail.class);
 	
 		System.out.println("** Enregistrement des filtres ");
 		// Enregistrement des filtres (alternative possible via providers)

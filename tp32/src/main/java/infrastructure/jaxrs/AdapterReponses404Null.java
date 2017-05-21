@@ -30,6 +30,7 @@ public class AdapterReponses404Null implements ClientResponseFilter, ReaderInter
     public void filter(ClientRequestContext clientRequestContext, ClientResponseContext clientResponseContext) throws IOException {
         if (clientResponseContext.getStatus() == Response.Status.NOT_FOUND.getStatusCode()){
             clientResponseContext.getHeaders().add(HEADER_NAME, ERREUR_404);
+            clientResponseContext.setStatus(Response.Status.OK.getStatusCode());
         }
     }
 

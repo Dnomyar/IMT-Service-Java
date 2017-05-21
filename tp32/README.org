@@ -1,0 +1,45 @@
+Damien RAYMOND
+
+
+—-> Synchrone <—-
+recherche sync seq
+	- 1939 ms (Fructueuse)
+	- 15051 ms (Infructueuse)
+
+recherche sync multi
+	- 179 ms (Fructueuse)
+	- 1613 ms (Infructueuse)
+
+recherche sync stream 8
+	- 1544 ms (Fructueuse)
+	- 4537 ms (Infructueuse)
+
+recherche sync stream rx
+	- 9052 ms (Fructueuse)
+	- 15051 ms (Infructueuse)
+
+
+—-> Asynchrone <—-
+recherche async seq
+	- 1575 ms (Fructueuse)
+	- 1588 ms (Infructueuse)
+
+recherche async multi
+	- 76 ms (Fructueuse)
+	- 1603 ms (Infructueuse)
+
+recherche async stream 8
+	- 1529 ms (Fructueuse)
+	- 4587 ms (Infructueuse)
+
+recherche async stream rx
+	- 12077 ms (Fructueuse)
+	- 15091 ms (Infructueuse)
+
+
+Je suis assez surpris par la durée de l'execution avec Stream Rx.
+On voit clairement que quand on utilise tous les threads disponibles, la vitesse d'exécution est significativement rapide (150 à 200 fois plus rapide) dans les recherches fructueuses en tout cas.
+
+Il n'y a pas différence majeure entre le synchrone et l'asynchone.
+
+J'ai repris le code du Client d'Anaël et je l'ai amélioré.

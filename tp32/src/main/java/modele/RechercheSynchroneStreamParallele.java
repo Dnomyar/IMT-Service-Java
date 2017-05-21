@@ -13,7 +13,7 @@ import java.util.Objects;
 public class RechercheSynchroneStreamParallele extends RechercheSynchroneAbstraite {
     @Override
     public String getNomAlgorithme() {
-        return null;
+        return "recherche sync stream 8";
     }
 
     @Override

@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import configuration.JAXRS;
 
 
-@XmlRootElement(name="livre")
+@XmlRootElement(name=JAXRS.SOUSCHEMIN_LIVRE)
 public interface Livre {
 	public static Livre fromString(String titre){
 		return new ImplemLivre(titre);

@@ -17,13 +17,6 @@ public interface RechercheAsynchroneDeclenchantRechercheSynchrone extends Biblio
 	// Version asynchrone
 
 	default public Future<HyperLien<LivreRessource>> chercherAsynchrone(final Livre l, final AsyncResponse ar) {
-		System.out.println("-------------------------------------");
-		System.out.println("-------------------------------------");
-		System.out.println("-------------------------------------");
-		System.out.println("-------------------------------------");
-		System.out.println("-------------------------------------");
-		System.out.println("-------------------------------------");
-		System.out.println("-------------------------------------x");
 		Outils.afficherInfoTache("recherche aynchrone");
 		HyperLien<LivreRessource> h = this.chercher(l);
 		if (h == null) {

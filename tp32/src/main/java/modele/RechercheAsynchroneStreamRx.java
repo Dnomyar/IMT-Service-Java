@@ -24,8 +24,8 @@ public class RechercheAsynchroneStreamRx extends RechercheAsynchroneAbstraite {
                 .flatMap(bibliotheque -> Observable.from(rechercheAsync(bibliotheque, l, client)))
                 .subscribeOn(Schedulers.io())
                 .filter(Objects::nonNull)
-                .first()
+                .firstOrDefault(null)
                 .toBlocking()
-                .firstOrDefault(null);
+                .single();
     }
 }

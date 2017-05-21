@@ -25,8 +25,8 @@ public class RechercheSynchroneStreamRx extends RechercheSynchroneAbstraite {
                 .flatMap(bibliotheque -> Observable.fromCallable(() -> rechercheSync(bibliotheque, l)))
                 .subscribeOn(Schedulers.io())
                 .filter(Objects::nonNull)
-                .first()
+                .firstOrDefault(null)
                 .toBlocking()
-                .firstOrDefault(null);
+                .single();
     }
 }
